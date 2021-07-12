@@ -19,8 +19,8 @@
       <h1>Weather Dashboard</h1>
     </header>
 
-    <main>
-      <div class="card vh-100" style="width: 18rem">
+    <main >
+      <div class="card vh-100 col-3" >
         <div class="card-body">
           <h2 class="card-title">Search for a City:</h2>
 
@@ -32,15 +32,21 @@
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
                 id='user-input'
+                
               />
             </div>
 
             <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="submit">Button</button>
+              <button class="btn btn-primary" type="submit">Search</button>
             </div>
           </form>
+
+          <hr>
+          <div id="cities"></div>
         </div>
       </div>
+
+      <div class='col-9' id="showing-results"></div>
     </main>
 
     <footer></footer>
