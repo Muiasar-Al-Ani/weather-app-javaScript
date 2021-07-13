@@ -18,8 +18,21 @@ var userFormHandler = function(event){
   searchHistory.unshift(userInput)
 
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+  userInputEl.value = ''
 
+  renderHistory();
 }
 
+var renderHistory = function(){
+    var searchHistory = JSON.parse(localStorage.getItem('searchHistory'))
 
 
+    citiesDiv.innerHTML = ''
+    for (var i = 0; i < searchHistory.length; i++){
+        citiesDiv.innerHTML += `<button class="btn btn-primary w-100 my-1" type="button">${searchHistory[i]}</button>`
+    }
+   
+} 
+
+
+inputFormEl.addEventListener('submit', userFormHandler)
