@@ -27,7 +27,7 @@ var renderHistory = function () {
   var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
   citiesDiv.innerHTML = "";
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < searchHistory.length; i++) {
     if (searchHistory[i] !== "") {
       citiesDiv.innerHTML += `<button class="btn btn-primary bg-gradient w-100 my-1" data-city='${searchHistory[i]}' type="button">${searchHistory[i]}</button>`;
     }
