@@ -1,3 +1,12 @@
 .card {
     border: none;
 }
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron {
+    background: black;
+    color: white;
+}
