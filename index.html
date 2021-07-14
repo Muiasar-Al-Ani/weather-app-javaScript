@@ -15,18 +15,24 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     ></script>
     <link rel="shortcut icon" href="./images/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/style.css" />
     <title>Weather Search App</title>
   </head>
   <body>
-    <header class="text-center text-light bg-dark p-2">
+    <header class="text-center text-light bg-dark bg-gradient p-2">
       <h1>Weather Dashboard</h1>
     </header>
 
-    <main class='row'>
-      <div class="card vh-100 col-3" >
+    <main class="row">
+      <div class="card vh-100 col-3 bg-dark bg-gradient customCard">
         <div class="card-body">
-          <h2 class="card-title">Search for a City:</h2>
+          <h2 class="card-title text-white">Search for a City:</h2>
 
           <form id="input-form">
             <div class="input-group mb-3">
@@ -35,22 +41,23 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
-                id='user-input'
-                
+                id="user-input"
               />
             </div>
 
             <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="submit">Search</button>
+              <button class="btn btn-primary bg-gradient" type="submit">
+                Search
+              </button>
             </div>
           </form>
 
-          <hr>
+          <hr />
           <div id="cities"></div>
         </div>
       </div>
 
-      <div class='col-9 vh-100' id="showing-results"></div>
+      <div class="col-9 vh-100" id="showing-results"></div>
     </main>
 
     <footer></footer>

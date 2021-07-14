@@ -27,9 +27,9 @@ var renderHistory = function () {
   var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
   citiesDiv.innerHTML = "";
-  for (var i = 0; i < searchHistory.length; i++) {
+  for (var i = 0; i < 10; i++) {
     if (searchHistory[i] !== "") {
-      citiesDiv.innerHTML += `<button class="btn btn-primary w-100 my-1" type="button">${searchHistory[i]}</button>`;
+      citiesDiv.innerHTML += `<button class="btn btn-primary bg-gradient w-100 my-1" data-city='${searchHistory[i]}' type="button">${searchHistory[i]}</button>`;
     }
   }
 };
@@ -52,8 +52,8 @@ var getWeatherApi = function (userInput) {
 
 var renderJumbotron = function (data) {
   showingResultsDiv.innerHTML = `
-    <div class="jumbotron p-3">
-    <h1 class="display-4">${data.city.name} (${moment
+    <div class="jumbotron p-3 m-3 bg-dark bg-gradient rounded">
+    <h1>${data.city.name} (${moment
     .unix(data.list[0].dt)
     .format("MM/DD/YYYY")})</h1>
     <p class="lead">Temp: ${data.list[0].main.temp} &#8457; <br>Wind: ${
@@ -80,10 +80,10 @@ var renderUvIndex = function (lat, lon) {
       var uvIndex = data.current.uvi;
       document.getElementById("uvIndexEl").innerHTML =
         uvIndex < 3
-          ? `<button type="button" class="btn btn-success">${uvIndex}</button>`
+          ? `<button type="button" class="btn btn-success bg-gradient">${uvIndex}</button>`
           : uvIndex < 6
-          ? `<button type="button" class="btn btn-warning">${uvIndex}</button>`
-          : `<button type="button" class="btn btn-danger">${uvIndex}</button>`;
+          ? `<button type="button" class="btn btn-warning bg-gradient">${uvIndex}</button>`
+          : `<button type="button" class="btn btn-danger bg-gradient">${uvIndex}</button>`;
     });
 };
 
@@ -95,7 +95,7 @@ var renderFiveDaysForecast = function (data) {
     }.png`;
 
     document.getElementById("fiveDaysForecast").innerHTML += `
-    <div class="card col-2" ">
+    <div class="card col-2 mt-5 bg-dark bg-gradient text-white customCard" >
     <div class="card-body">
       <h5 class="card-title">${moment
         .unix(data.list[neededWeather[i]].dt)
@@ -108,6 +108,14 @@ var renderFiveDaysForecast = function (data) {
   </div>`;
   }
 };
+
+var buttonClickHandler = function(event){
+  var city = event.target.getAttribute('data-city')
+  if(city){
+    getWeatherApi(city);
+  }
+}
+citiesDiv.addEventListener('click', buttonClickHandler);
 // 09ce67c28c7fdad99dc9f81de13032bb
 
 //  api.openweathermap.org/data/2.5/forecast?q=raleigh&appid=09ce67c28c7fdad99dc9f81de13032bb

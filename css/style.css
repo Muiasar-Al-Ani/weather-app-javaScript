@@ -3,10 +3,17 @@
 }
 
 body {
+    font-family: 'Sriracha', cursive;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .jumbotron {
-    background: black;
+    
+    opacity: 0.9;
     color: white;
 }
+
+.customCard {
+    opacity: 0.9;
+}
+
