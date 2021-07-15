@@ -1,9 +1,11 @@
+// Added the variables for the elements queries that will be used.
 var userInputEl = document.getElementById("user-input");
 var inputFormEl = document.getElementById("input-form");
 var showingResultsDiv = document.getElementById("showing-results");
 var citiesDiv = document.getElementById("cities");
 var apiKey = "09ce67c28c7fdad99dc9f81de13032bb";
 
+// Added a userFormHandler function that will take the user input and save it in the local storage.
 var userFormHandler = function (event) {
   event.preventDefault();
 
@@ -23,6 +25,7 @@ var userFormHandler = function (event) {
   getWeatherApi(userInput);
 };
 
+// Added a renderHistory function that will parse the local storage and render a button for each of the search history saved in the local storage
 var renderHistory = function () {
   var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
@@ -34,6 +37,7 @@ var renderHistory = function () {
   }
 };
 
+// Added a getWeatherApi function that will make an api call and get the weather data needed
 var getWeatherApi = function (userInput) {
   var requestUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -50,6 +54,7 @@ var getWeatherApi = function (userInput) {
     });
 };
 
+// Added a renderJumbotron function that will get the data from the api call and render it in a jumbotron and will make a call to renderUvIndex function that will fetch and render the uvIndex button
 var renderJumbotron = function (data) {
   showingResultsDiv.innerHTML = `
     <div class="jumbotron p-3 m-3 bg-dark bg-gradient rounded">
@@ -59,7 +64,7 @@ var renderJumbotron = function (data) {
     <p class="lead">Temp: ${data.list[0].main.temp} &#8457; <br>
     Wind: ${data.list[0].wind.speed} MPH <br>
     Humidity: ${data.list[0].main.humidity}% <br>
-     UV index: <span id='uvIndexEl'></span></p>
+    UV index: <span id='uvIndexEl'></span></p>
     
   </div>
   <h1 class='text-white ms-3'>5-Day Forecast:</h1>
@@ -69,6 +74,7 @@ var renderJumbotron = function (data) {
   document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.city.name}')`;
 };
 
+// Added the renderUvIndex funtion that will make an api call to get the uv index and will render a button for it depends on the condition
 var renderUvIndex = function (lat, lon) {
   var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
@@ -87,6 +93,8 @@ var renderUvIndex = function (lat, lon) {
     });
 };
 
+
+// Added renderFiveDaysForecast function that will create 5 cards for each day weather forecast
 var renderFiveDaysForecast = function (data) {
   var neededWeather = [1, 6, 14, 22, 30];
   for (var i = 0; i < neededWeather.length; i++) {
@@ -109,12 +117,14 @@ var renderFiveDaysForecast = function (data) {
   }
 };
 
+// Added buttonClickHandler handler that will render the targeted button city
 var buttonClickHandler = function (event) {
   var city = event.target.getAttribute("data-city");
   if (city) {
     getWeatherApi(city);
   }
 };
-citiesDiv.addEventListener("click", buttonClickHandler);
 
+// Added eventListeners
+citiesDiv.addEventListener("click", buttonClickHandler);
 inputFormEl.addEventListener("submit", userFormHandler);
