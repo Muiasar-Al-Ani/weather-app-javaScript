@@ -4,7 +4,6 @@
 
 body {
     font-family: 'Sriracha', cursive;
-    background-repeat: no-repeat;
     background-size: cover;
 }
 .jumbotron {
@@ -16,4 +15,8 @@ body {
 .customCard {
     opacity: 0.9;
 }
+
+h1 {
+    text-shadow: 2px 2px black;
+  }
 

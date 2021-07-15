@@ -27,7 +27,7 @@ var renderHistory = function () {
   var searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
   citiesDiv.innerHTML = "";
-  for (var i = 0; i < searchHistory.length; i++) {
+  for (var i = 0; i < searchHistory.length && i < 8; i++) {
     if (searchHistory[i] !== "") {
       citiesDiv.innerHTML += `<button class="btn btn-primary bg-gradient w-100 my-1" data-city='${searchHistory[i]}' type="button">${searchHistory[i]}</button>`;
     }
@@ -53,16 +53,16 @@ var getWeatherApi = function (userInput) {
 var renderJumbotron = function (data) {
   showingResultsDiv.innerHTML = `
     <div class="jumbotron p-3 m-3 bg-dark bg-gradient rounded">
-    <h1>${data.city.name} (${moment
-    .unix(data.list[0].dt)
-    .format("MM/DD/YYYY")})</h1>
-    <p class="lead">Temp: ${data.list[0].main.temp} &#8457; <br>Wind: ${
-    data.list[0].wind.speed
-  } MPH <br>Humidity: ${
-    data.list[0].main.humidity
-  }% <br> UV index: <span id='uvIndexEl'></span></p>
+    <h1>
+    ${data.city.name} (${moment.unix(data.list[0].dt).format("MM/DD/YYYY")})
+    </h1>
+    <p class="lead">Temp: ${data.list[0].main.temp} &#8457; <br>
+    Wind: ${data.list[0].wind.speed} MPH <br>
+    Humidity: ${data.list[0].main.humidity}% <br>
+     UV index: <span id='uvIndexEl'></span></p>
     
   </div>
+  <h1 class='text-white ms-3'>5-Day Forecast:</h1>
   <div id="fiveDaysForecast" class="row d-flex justify-content-around p-3"></div>`;
   renderUvIndex(data.city.coord.lat, data.city.coord.lon);
   renderFiveDaysForecast(data);
@@ -95,7 +95,7 @@ var renderFiveDaysForecast = function (data) {
     }.png`;
 
     document.getElementById("fiveDaysForecast").innerHTML += `
-    <div class="card col-2 mt-5 bg-dark bg-gradient text-white customCard" >
+    <div class="card col-lg-2 col-md-5 mt-5 bg-dark bg-gradient text-white customCard" >
     <div class="card-body">
       <h5 class="card-title">${moment
         .unix(data.list[neededWeather[i]].dt)
@@ -109,15 +109,12 @@ var renderFiveDaysForecast = function (data) {
   }
 };
 
-var buttonClickHandler = function(event){
-  var city = event.target.getAttribute('data-city')
-  if(city){
+var buttonClickHandler = function (event) {
+  var city = event.target.getAttribute("data-city");
+  if (city) {
     getWeatherApi(city);
   }
-}
-citiesDiv.addEventListener('click', buttonClickHandler);
-// 09ce67c28c7fdad99dc9f81de13032bb
-
-//  api.openweathermap.org/data/2.5/forecast?q=raleigh&appid=09ce67c28c7fdad99dc9f81de13032bb
+};
+citiesDiv.addEventListener("click", buttonClickHandler);
 
 inputFormEl.addEventListener("submit", userFormHandler);
