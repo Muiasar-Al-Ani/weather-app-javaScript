@@ -18,9 +18,9 @@ This is my take on a Weather App JavaScript that I created using HTML, CSS, Boot
 
 ### Here is a screen shot of my deployed Weather App JavaScript!
 
-![ScreenShot](https://github.com/Muiasar-Al-Ani/javaScript-code-quiz/blob/main/images/JavaScript-Quiz-1.png)
-![ScreenShot](https://github.com/Muiasar-Al-Ani/javaScript-code-quiz/blob/main/images/JavaScript-Quiz-2.png)
-![ScreenShot](https://github.com/Muiasar-Al-Ani/javaScript-code-quiz/blob/main/images/JavaScript-Quiz-3.png)
+![ScreenShot](https://github.com/Muiasar-Al-Ani/weather-app-javaScript/blob/main/screenshots/Weather-Search-1.png)
+![ScreenShot](https://github.com/Muiasar-Al-Ani/weather-app-javaScript/blob/main/screenshots/Weather-Search-2.png)
+![ScreenShot](https://github.com/Muiasar-Al-Ani/weather-app-javaScript/blob/main/screenshots/Weather-Search-3.png)
 
 
 ### Video of the running Weather App JavaScript!
